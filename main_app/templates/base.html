@@ -5,9 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="{% static 'images/splash.svg' %}" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <title>Cat Collector</title>
+    <title>ReStockr</title>
     {% block head %}
 
     {% endblock %}
@@ -15,15 +14,22 @@
   <body>
     <header>
       <div class="logo-container">
-        <p>Logo Placeholder</p>
+        <li>
+          <a href="{% url 'home' %}">Logo Placeholder</a>
+        </li>
         {% comment %} <a href="{% url 'home' %}"><img src="" alt="" /></a> {% endcomment %}
       </div>
       <nav>
         <ul>
-          {% comment %} {% if user.is_authenticated %}{% endif %} {% endcomment %}
-          <li>
-            <a href="{% url 'home' %}">Home</a>
-          </li>
+          {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'pantry-index' %}">Pantries</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="{% url 'home' %}">Home</a>
+            </li>
+          {% endif %}
         </ul>
       </nav>
     </header>

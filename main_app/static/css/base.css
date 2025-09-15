@@ -38,6 +38,7 @@ body {
   --font-reg: 1.6rem;
   --card-border-radius: 6px;
 }
+
 header {
   display: flex;
   flex-direction: row;
@@ -113,6 +114,21 @@ main {
   max-width: 100px;
   box-shadow: var(--card-box-shadow);
   color: black;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 10px;
+  box-shadow: var(--card-box-shadow);
+  border-radius: 10px;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
 }
 
 /* ===== Ids ===== */

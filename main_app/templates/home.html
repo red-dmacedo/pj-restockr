@@ -1,11 +1,19 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block head %}
-  <link rel="stylesheet" href="css/home.css">
-{% endblock  %}
+  <link rel="stylesheet" href="css/home.css" />
+{% endblock %}
 
 {% block content %}
-  <div class="page-content flex-center">
-
+  <div>
+    <section class="page-content flex-center">
+      <form action="{% url 'home' %}" method="post" class="login form">
+        <h1 class="flex-center">Login</h1>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <button type="submit" class="btn submit">Login</button>
+      </form>
+    </section>
   </div>
-{% endblock  %}
+{% endblock %}
