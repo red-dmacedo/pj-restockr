@@ -30,11 +30,15 @@ class PantryCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
-    
+
 class PantryDetail(LoginRequiredMixin, DetailView):
     model = Pantry
     template_name = 'main_app/pantry_detail.html'
     context_object_name = "pantry"
+
+class PantryUpdate(LoginRequiredMixin, UpdateView):
+    model = Pantry
+    fields = ['name']
 
 
 

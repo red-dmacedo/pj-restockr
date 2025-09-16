@@ -40,6 +40,9 @@ class Pantry(models.Model):
     name = models.CharField(max_length=50)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def get_absolute_url(self):
+        return reverse("pantry-detail", kwargs={"pk": self.id})
+
     def __str__(self):
         return self.name
 

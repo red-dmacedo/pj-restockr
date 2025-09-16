@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block content %}
+  <a href="{% url 'pantry-create' %}" style="font-size: larger;">New Pantry</a>
+  <h2>Pantries</h2>
   {% if pantry_list.count %}
     <ul>
       {% for pantry in pantry_list %}
@@ -17,5 +19,4 @@
   {% else %}
     <h1>No Pantries retrieved</h1>
   {% endif %}
-  <a href="{% url 'pantry-create' %}">Create a Pantry</a>
 {% endblock %}

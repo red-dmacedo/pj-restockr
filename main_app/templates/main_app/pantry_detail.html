@@ -8,12 +8,25 @@
 {% block content %}
   {% if pantry %}
     <h1>{{ pantry.name }}</h1>
-    {% if pantry.items.all %}
-      <ul>
-        {% for pantryitem in pantry.items.all %}
-          <li>{{ pantryitem.name }} x {{ pantryitem.quantity }} {{ pantryitem.unit }}s</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+    <div class="flex-line">
+      <form action="{% url 'pantry-update' pantry.pk %}" method='get'>
+        <button type="submit" class="btn">Edit</button>
+      </form>
+      <form action="">
+        <button type="submit" class="btn warn">Delete</button>
+      </form>
+    </div>
+    <div class="pantry-display">
+      {% if pantry.items.all %}
+        <ul class="pantry-item-list">
+          {% for pantryitem in pantry.items.all %}
+            <li>{{ pantryitem.name }} x {{ pantryitem.quantity }} {{ pantryitem.unit }}s</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <p>{{ pantry.items.all.count }} items</p>
+    </div>
+  {% else %}
+    <h1>No Pantry at this address</h1>
   {% endif %}
 {% endblock %}

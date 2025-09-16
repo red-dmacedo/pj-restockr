@@ -32,11 +32,11 @@ body {
   --danger: rgb(220, 20, 30);
   --secondary: rgb(57, 57, 57);
   --card-box-shadow: 5px 5px 6px -1px #aaa;
-  --font-xtreme: 4.2rem;
-  --font-xxl: 3.6rem;
-  --font-xl: 2.4rem;
-  --font-l: 1.8rem;
-  --font-reg: 1.6rem;
+  --font-xtreme: 2.625rem;
+  --font-xxl: 2.25rem;
+  --font-xl: 1.5rem;
+  --font-l: 1.125rem;
+  --font-reg: 1rem;
   --card-border-radius: 6px;
 }
 
@@ -100,9 +100,11 @@ nav a, header a {
   flex-direction: column;
 }
 
-.flex-row {
+.flex-row,
+.flex-line {
   display: flex;
   flex-direction: row;
+  gap: 10px;
 }
 
 .flex-row-wrap {
@@ -128,6 +130,7 @@ nav a, header a {
   padding: 10px;
   box-shadow: var(--card-box-shadow);
   border-radius: 10px;
+  gap: 10px;
 }
 
 .page-content {
@@ -140,6 +143,90 @@ nav a, header a {
   display: block;
   height: 100%;
   aspect-ratio: 1/1;
+}
+
+.btn {
+  font-size: var(--font-reg);
+  padding: 8px 16px;
+  border-radius: 6px;
+  border-width: 2px;
+  border-style: solid;
+  text-decoration: none;
+  background-color: var(--button-bg);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  margin-right: 10px;
+}
+
+.btn:hover,
+.abtn-small:hover {
+  background-color: var(--button-bg-hover);
+}
+
+.basic {
+  color: black;
+  border-color: black;
+}
+
+.secondary {
+  color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.confirm {
+  color: var(--submit);
+  border-color: var(--submit);
+}
+
+.warn {
+  color: var(--warn);
+  border-color: var(--warn);
+}
+
+.danger {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.abtn { /* <a> tag styled as button */
+  background: white;
+  text-decoration: none;
+  font-size: var(--font-reg);
+  /* padding: 4px 8px; */
+  padding: 8px 16px;
+  border-radius: 6px;
+  border-width: 2px;
+  border-style: solid;
+  text-decoration: none;
+  background-color: var(--button-bg);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  margin-right: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+  place-items: center;
+}
+
+.abtn-small {
+  aspect-ratio: 2/1;
+  height: 10px;
+}
+
+.btn-small {
+  aspect-ratio: 2/1;
+  height: 30px;
 }
 
 /* ===== Ids ===== */
