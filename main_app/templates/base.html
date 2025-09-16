@@ -14,9 +14,7 @@
   <body>
     <header>
       <div class="logo-container">
-        <li>
-          <a href="{% url 'home' %}">Logo Placeholder</a>
-        </li>
+        <a href="{% url 'home' %}">Logo Placeholder</a>
         {% comment %} <a href="{% url 'home' %}"><img src="" alt="" /></a> {% endcomment %}
       </div>
       <nav>
@@ -25,9 +23,18 @@
             <li>
               <a href="{% url 'pantry-index' %}">Pantries</a>
             </li>
+            <li>
+              <form id="logout-form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+              </form>
+            </li>
           {% else %}
             <li>
-              <a href="{% url 'home' %}">Home</a>
+              <a href="{% url 'home' %}">Login</a>
+            </li>
+            <li>
+              <a href="{% url 'signup' %}">Sign Up</a>
             </li>
           {% endif %}
         </ul>

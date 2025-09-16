@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/pantry_detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+  {% if pantry %}
+    <h1>{{ pantry.name }}</h1>
+    {% if pantry.items.all %}
+      <ul>
+        {% for pantryitem in pantry.items.all %}
+          <li>{{ pantryitem.name }} x {{ pantryitem.quantity }} {{ pantryitem.unit }}s</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endif %}
+{% endblock %}
