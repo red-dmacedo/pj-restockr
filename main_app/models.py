@@ -21,6 +21,9 @@ UNITS = (
 class PurchaseLocation(models.Model):
     name = models.CharField(max_length=50, unique=True)
     image = models.TextField(max_length=255, blank=True)
+    
+    def __str__(self):
+        return self.name
 
 
 class Item(models.Model):
@@ -58,7 +61,7 @@ class PantryItem(models.Model):
     )
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
-    units = models.CharField(
+    unit = models.CharField(
         max_length=5,
         choices=UNITS,
         default=UNITS[0][0]
@@ -68,4 +71,4 @@ class PantryItem(models.Model):
         unique_together = ("pantry", "item")
 
     def __str__(self):
-        return f"{self.item.name}"
+        return f"{self.item}"

@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block content %}
-  {% if pantry %}
+  {% if pantry and user == pantry.owner %}
     <h1>{{ pantry.name }}</h1>
     <div class="flex-line">
-      <form action="{% url 'pantry-update' pantry.pk %}" method='get'>
+      <form action="{% url 'pantry-update' pantry.pk %}" method="get">
         <button type="submit" class="btn">Edit</button>
       </form>
       <form action="">
@@ -20,11 +20,15 @@
       {% if pantry.items.all %}
         <ul class="pantry-item-list">
           {% for pantryitem in pantry.items.all %}
-            <li>{{ pantryitem.name }} x {{ pantryitem.quantity }} {{ pantryitem.unit }}s</li>
+            <li>{{ pantryitem.item.name }} {{ pantryitem.quantity }} {{ pantryitem.unit }}(s)</li>
           {% endfor %}
         </ul>
       {% endif %}
-      <p>{{ pantry.items.all.count }} items</p>
+      {% if pantry.items.all.count == 1 %}
+        <p>{{ pantry.items.all.count }} item</p>
+      {% else %}
+        <p>{{ pantry.items.all.count }} items</p>
+      {% endif %}
     </div>
   {% else %}
     <h1>No Pantry at this address</h1>
