@@ -18,9 +18,19 @@
     </div>
     <div class="pantry-display">
       {% if pantry.items.all %}
-        <ul class="pantry-item-list">
+        <ul class="pantry-item-list flex-row-wrap">
           {% for pantryitem in pantry.items.all %}
-            <li>{{ pantryitem.item.name }} {{ pantryitem.quantity }} {{ pantryitem.unit }}(s)</li>
+            <li class="card">
+              {% if pantryitem.item.image %}
+                <img src="{{ pantryitem.item.image }}" alt="Image of {{ pantryitem.item.name }}" />
+              {% endif %}
+              <h3>{{ pantryitem.item.name }}</h3>
+              {% if pantryitem.quanity == 1 %}
+                Qty. {{ pantryitem.quantity }} {{ pantryitem.unit }}
+              {% else %}
+                Qty. {{ pantryitem.quantity }} {{ pantryitem.unit }}s
+              {% endif %}
+            </li>
           {% endfor %}
         </ul>
       {% endif %}

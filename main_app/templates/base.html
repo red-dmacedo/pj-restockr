@@ -24,8 +24,8 @@
               <a href="{% url 'pantry-index' %}">Pantries</a>
             </li>
             <li>
-              {% comment %} <a href="{% url 'item-index' %}">Items</a> {% endcomment %}
-              <a href="#">Items</a>
+              <a href="{% url 'item-index' %}">Items</a>
+              {% comment %} <a href="#">Items</a> {% endcomment %}
             </li>
             <li>
               <form id="logout-form" method="post" action="{% url 'logout' %}">

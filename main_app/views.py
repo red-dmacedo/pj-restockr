@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from .models import Pantry, PantryItem, PurchaseLocation
+from .models import Pantry, PantryItem, PurchaseLocation, Item
 
 # Create your views here.
 
@@ -43,6 +43,21 @@ class PantryUpdate(LoginRequiredMixin, UpdateView):
 class PantryDelete(LoginRequiredMixin, DeleteView):
     model = Pantry
     success_url = '/pantries/'
+
+class Items(LoginRequiredMixin, ListView):
+    model = Item
+
+    def get_queryset(self):
+        return Item.objects.filter(owner=self.request.user)
+
+class ItemDetail(LoginRequiredMixin, DetailView):
+    model = Item
+    template_name = 'main_app/item_detail.html'
+    context_object_name = "item"
+
+class ItemDelete(LoginRequiredMixin, DeleteView):
+    model = Item
+    success_url = '/items/'
 
 
 

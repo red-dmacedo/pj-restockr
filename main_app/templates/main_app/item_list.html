@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+  <h1>Items</h1>
+  {% if item_list.count %}
+    <ul class="flex-row-wrap">
+      {% for item in item_list %}
+        <a href="{% url 'item-detail' item.pk %}">
+          <li class="card">
+            {% if item.image %}
+              <img src="{{ item.image }}" alt="Image of {{ item.image }}" />
+            {% endif %}
+            <h2>{{ item.name }}</h2>
+          </li>
+        </a>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>{{ item_list.count }} items</p>
+  {% endif %}
+{% endblock %}

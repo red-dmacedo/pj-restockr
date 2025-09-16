@@ -36,7 +36,7 @@ class Item(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("ingredient-detail", kwargs={"pk": self.id})
+        return reverse("item-detail", kwargs={"pk": self.id})
 
 
 class Pantry(models.Model):

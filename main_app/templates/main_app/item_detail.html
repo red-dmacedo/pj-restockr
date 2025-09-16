@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+  {% if item %}
+    <div class="card">
+      {% if item.image %}
+        <img src="{{ item.image }}" alt="Image of {{ item.name }}" />
+      {% endif %}
+      <h2>{{ item.name }}</h2>
+    </div>
+    <div class="actions">
+      <a href="{% url 'item-index' %}" class="btn danger">Cancel</a>
+      <a href="#" class="btn">Edit</a>
+      <form action="{% url 'item-delete' item.pk %}">
+        <button type="submit" class="btn warn">Delete</button>
+      </form>
+    </div>
+  {% endif %}
+{% endblock %}

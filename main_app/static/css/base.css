@@ -118,7 +118,7 @@ nav a, header a {
   border: 1px solid black;
   margin: 10px;
   padding: 10px;
-  max-width: 100px;
+  max-width: 150px;
   box-shadow: var(--card-box-shadow);
   color: black;
 }

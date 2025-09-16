@@ -10,4 +10,8 @@ urlpatterns = [
     path('pantries/<int:pk>/', views.PantryDetail.as_view(), name='pantry-detail'),
     path('pantries/<int:pk>/edit', views.PantryUpdate.as_view(), name='pantry-update'),
     path('pantries/<int:pk>/delete', views.PantryDelete.as_view(), name='pantry-delete'),
+
+    path('items/', views.Items.as_view(), name="item-index"),
+    path('items/<int:pk>/', views.ItemDetail.as_view(), name='item-detail'),
+    path('pantries/<int:pk>/delete', views.PantryDelete.as_view(), name='item-delete'),
 ]
