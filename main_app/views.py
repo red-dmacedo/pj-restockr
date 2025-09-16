@@ -33,7 +33,7 @@ class PantryCreate(LoginRequiredMixin, CreateView):
     
 class PantryDetail(LoginRequiredMixin, DetailView):
     model = Pantry
-    template_name = 'main_app/pantry_detail.css'
+    template_name = 'main_app/pantry_detail.html'
     context_object_name = "pantry"
 
 

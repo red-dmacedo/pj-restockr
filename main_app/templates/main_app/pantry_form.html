@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block head %}
-  <link rel="stylesheet" href="" />
+  <link rel="stylesheet" href="{% static 'css/pantry_form.css' %}}" />
 {% endblock %}
 
 {% block content %}
-  <div class="page-header">
+  <div class="page-header flex-center">
     {% if pantry %}
       <h1>Edit {{ pantry.name }}</h1>
     {% else %}
@@ -14,7 +14,7 @@
     {% endif %}
   </div>
 
-  <form action="" method="post" class="form-container form">
+  <form action="" method="post" class="form flex-center">
     {% csrf_token %}
     <table>{{ form.as_table }}</table>
     <button type="submit" class="btn submit">Submit</button>

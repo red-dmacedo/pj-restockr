@@ -52,12 +52,6 @@ header {
   padding: 10px;
 }
 
-a {
-  display: block;
-  height: 100%;
-  aspect-ratio: 1/1;
-}
-
 img { 
   width: 100%;
   aspect-ratio: 1/1;
@@ -140,6 +134,12 @@ nav a, header a {
   display: flex;
   flex-direction: column;
   padding-top: 20px;
+}
+
+.fill-height {
+  display: block;
+  height: 100%;
+  aspect-ratio: 1/1;
 }
 
 /* ===== Ids ===== */

@@ -9,11 +9,13 @@
   {% if pantry_list.count %}
     <ul>
       {% for pantry in pantry_list %}
-        <li>{{ pantry.name }}</li>
+        <li>
+          <a href="{% url 'pantry-detail' pantry.pk %}">{{ pantry.name }}</a>
+        </li>
       {% endfor %}
     </ul>
   {% else %}
-  <h1>No Pantries retrieved</h1>
+    <h1>No Pantries retrieved</h1>
   {% endif %}
   <a href="{% url 'pantry-create' %}">Create a Pantry</a>
 {% endblock %}
