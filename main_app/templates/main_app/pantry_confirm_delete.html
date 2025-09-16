@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/pantry_confirm_delete.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <h1>Delete {{ pantry.name }}?</h1>
+  <div class="actions">
+    <a href="{% url 'pantry-detail' pantry.pk %}" class="btn secondary">Cancel</a>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn danger">Delete</button>
+    </form>
+  </div>
+{% endblock %}

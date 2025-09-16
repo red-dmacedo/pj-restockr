@@ -9,4 +9,5 @@ urlpatterns = [
     path('pantries/new/', views.PantryCreate.as_view(), name='pantry-create'),
     path('pantries/<int:pk>/', views.PantryDetail.as_view(), name='pantry-detail'),
     path('pantries/<int:pk>/edit', views.PantryUpdate.as_view(), name='pantry-update'),
+    path('pantries/<int:pk>/delete', views.PantryDelete.as_view(), name='pantry-delete'),
 ]

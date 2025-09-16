@@ -12,7 +12,7 @@
       <form action="{% url 'pantry-update' pantry.pk %}" method="get">
         <button type="submit" class="btn">Edit</button>
       </form>
-      <form action="">
+      <form action="{% url 'pantry-delete' pantry.pk %}">
         <button type="submit" class="btn warn">Delete</button>
       </form>
     </div>

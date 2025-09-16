@@ -40,6 +40,10 @@ class PantryUpdate(LoginRequiredMixin, UpdateView):
     model = Pantry
     fields = ['name']
 
+class PantryDelete(LoginRequiredMixin, DeleteView):
+    model = Pantry
+    success_url = '/pantries/'
+
 
 
 def signup(request):
