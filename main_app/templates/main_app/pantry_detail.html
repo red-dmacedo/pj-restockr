@@ -20,17 +20,19 @@
       {% if pantry.items.all %}
         <ul class="pantry-item-list flex-row-wrap">
           {% for pantryitem in pantry.items.all %}
-            <li class="card">
-              {% if pantryitem.item.image %}
-                <img src="{{ pantryitem.item.image }}" alt="Image of {{ pantryitem.item.name }}" />
-              {% endif %}
-              <h3>{{ pantryitem.item.name }}</h3>
-              {% if pantryitem.quanity == 1 %}
-                Qty. {{ pantryitem.quantity }} {{ pantryitem.unit }}
-              {% else %}
-                Qty. {{ pantryitem.quantity }} {{ pantryitem.unit }}s
-              {% endif %}
-            </li>
+            <a href="{% url 'pantry-base-item-update' pantry.pk pantryitem.item.pk %}">
+              <li class="card">
+                {% if pantryitem.item.image %}
+                  <img src="{{ pantryitem.item.image }}" alt="Image of {{ pantryitem.item.name }}" />
+                {% endif %}
+                <h3>{{ pantryitem.item.name }}</h3>
+                {% if pantryitem.quanity == 1 %}
+                  Qty. {{ pantryitem.quantity }} {{ pantryitem.unit }}
+                {% else %}
+                  Qty. {{ pantryitem.quantity }} {{ pantryitem.unit }}s
+                {% endif %}
+              </li>
+            </a>
           {% endfor %}
         </ul>
       {% endif %}

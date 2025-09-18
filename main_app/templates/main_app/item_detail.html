@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_tags %}
 
 {% block head %}
-
+  <link rel="stylesheet" href="{% static 'css/item_detail.css' %}" />
 {% endblock %}
 
 {% block content %}
@@ -12,10 +13,21 @@
         <img src="{{ item.image }}" alt="Image of {{ item.name }}" />
       {% endif %}
       <h2>{{ item.name }}</h2>
+      {% if item.purchase_locations.all.count %}
+        <div class="flex-row-wrap">
+          <p>
+            <small>{{ item.purchase_locations.all|join_names:', ' }}</small>
+          </p>
+        </div>
+      {% endif %}
     </div>
     <div class="actions">
-      <a href="{% url 'item-index' %}" class="btn danger">Cancel</a>
-      <a href="#" class="btn">Edit</a>
+      {% if pantry %}
+        <a href="{% url 'pantry-detail' pantry.pk %}" class="btn danger">Cancel</a>
+      {% else %}
+        <a href="{% url 'item-index' %}" class="btn danger">Cancel</a>
+      {% endif %}
+      <a href="{% url 'item-update' item.pk %}" class="btn">Edit</a>
       <form action="{% url 'item-delete' item.pk %}">
         <button type="submit" class="btn warn">Delete</button>
       </form>

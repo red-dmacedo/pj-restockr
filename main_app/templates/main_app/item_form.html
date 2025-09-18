@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/item_form.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="page-header flex-center">
+    {% if item %}
+      <h1>Edit: {{ item.name }}</h1>
+    {% else %}
+      <h1>Create New Item</h1>
+    {% endif %}
+  </div>
+
+  <form action="" method="post" class="form flex-center">
+    {% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <div class="actions">
+      {% if item %}
+        {% if pantry %}
+          <a href="{% url 'item-detail' item.pk %}" class="btn danger">Cancel</a>
+          <button type="submit" class="btn confirm">Update</button>
+        {% else %}
+          <a href="{% url 'item-detail' item.pk %}" class="btn danger">Cancel</a>
+          <button type="submit" class="btn confirm">Update</button>
+        {% endif %}
+      {% else %}
+        <a href="{% url 'item-index' %}" class="btn danger">Cancel</a>
+        <button type="submit" class="btn confirm">Create</button>
+      {% endif %}
+    </div>
+  </form>
+{% endblock %}

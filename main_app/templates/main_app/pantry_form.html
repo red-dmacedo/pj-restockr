@@ -19,10 +19,10 @@
     <table>{{ form.as_table }}</table>
     <div class="actions">
       {% if pantry %}
-      <a href="{% url 'pantry-detail' pantry.id %}" class="btn secondary">Cancel</a>
-      <button type="submit" class="btn confirm">Update</button>
+        <a href="{% url 'pantry-detail' pantry.id %}" class="btn danger">Cancel</a>
+        <button type="submit" class="btn confirm">Update</button>
       {% else %}
-      <a href="{% url 'pantry-index' %}" class="btn secondary">Cancel</a>
+        <a href="{% url 'pantry-index' %}" class="btn danger">Cancel</a>
         <button type="submit" class="btn confirm">Create</button>
       {% endif %}
     </div>
