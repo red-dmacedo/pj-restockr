@@ -230,6 +230,14 @@ nav a, header a {
   place-items: center;
 }
 
+.actions-h {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+  place-items: center;
+}
+
 .abtn-small {
   aspect-ratio: 2/1;
   height: 10px;

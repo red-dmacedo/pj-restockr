@@ -108,8 +108,12 @@ class PurchaseLocations(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context["purchaselocation_list"] = context["purchaselocation_list"].order_by('name')
-        context["purchaselocation_form"] = PurchaseLocationForm()
+        # if self.kwargs["pk"]:
+        if "pk" in self.kwargs:
+            purchaselocation = PurchaseLocation.objects.get(id=self.kwargs["pk"])
+            context["purchaselocation_form"] = PurchaseLocationForm(instance=purchaselocation)
+        else:
+            context["purchaselocation_form"] = PurchaseLocationForm()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -123,3 +127,4 @@ class PurchaseLocations(LoginRequiredMixin, ListView):
 
 class PurchaseLocationDelete(LoginRequiredMixin, DeleteView):
     model = PurchaseLocation
+    success_url = '/purchase-locations/'

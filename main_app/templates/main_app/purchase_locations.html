@@ -13,23 +13,31 @@
       <form method="post" class="flex-column">
         {% csrf_token %}
         <table>{{ purchaselocation_form.as_table }}</table>
+        {% url 'purchase-locations-edit' as current_path %}
+        {% if request.path == current_path %}
+          <a href="{% url 'purchase-locations' %}" class="btn secondary">Cancel</a>
+        {% endif %}
         <button type="submit" name="purchaselocation_create" class="btn confirm">Add</button>
       </form>
       {% if purchaselocation_list.count %}
         <div class="location-list">
           <ul>
             {% for loc in purchaselocation_list %}
-              <li class="card-horizontal flex-row">
-                {% if loc.image %}
-                  <div class="image-container-v">
-                    <img src="{{ loc.image }}" alt="Image of {{ loc.name }}" class="img-v" />
-                  </div>
-                {% endif %}
-                <h2 class="flex-center">{{ loc.name }}</h2>
-                {% comment %} <div class="actions">
-                  <form action="{% url 'purchaselocation-delete' loc.pk %}"></form>
+              <li class="card-horizontal flex-row separate">
+                <div class="flex-row">
+                  {% if loc.image %}
+                    <div class="image-container-v">
+                      <img src="{{ loc.image }}" alt="Image of {{ loc.name }}" class="img-v" />
+                    </div>
+                  {% endif %}
+                  <h2 class="flex-center">{{ loc.name }}</h2>
+                </div>
+                <div class="actions-h">
+                  <a href="{% url 'purchase-locations-edit' loc.pk %}" class="btn secondary">Edit</a>
+                  <form action="{% url 'purchase-locations-delete' loc.pk %}">
                     <button type="submit" class="btn warn">Delete</button>
-                </div> {% endcomment %}
+                  </form>
+                </div>
               </li>
             {% endfor %}
           </ul>

@@ -18,5 +18,7 @@ urlpatterns = [
     path('items/<int:pk>/edit/', views.ItemUpdate.as_view(), name='item-update'),
     path('items/<int:pk>/delete', views.ItemDelete.as_view(), name='item-delete'),
     
-    path('purchase-locations/', views.PurchaseLocations.as_view(), name='purchase-locations')
+    path('purchase-locations/', views.PurchaseLocations.as_view(), name='purchase-locations'),
+    path('purchase-locations/<int:pk>/', views.PurchaseLocations.as_view(), name='purchase-locations-edit'),
+    path('purchase-locations/<int:pk>/delete', views.PurchaseLocationDelete.as_view(), name='purchase-locations-delete'),
 ]
