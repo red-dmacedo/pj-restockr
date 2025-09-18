@@ -20,7 +20,8 @@
       {% if pantry.items.all %}
         <ul class="pantry-item-list flex-row-wrap">
           {% for pantryitem in pantry.items.all %}
-            <a href="{% url 'pantry-base-item-update' pantry.pk pantryitem.item.pk %}">
+            <a href="{% url 'item-update' pantryitem.item.pk %}?next={{ request.path }}">
+            {% comment %} <a href="{% url 'pantry-base-item-update' pantry.pk pantryitem.item.pk %}"> {% endcomment %}
               <li class="card">
                 {% if pantryitem.item.image %}
                   <img src="{{ pantryitem.item.image }}" alt="Image of {{ pantryitem.item.name }}" />

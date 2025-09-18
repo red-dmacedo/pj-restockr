@@ -123,6 +123,17 @@ nav a, header a {
   color: black;
 }
 
+.card-horizontal {
+  border-radius: 10px;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+  width: 600px;
+  height: 50px;
+  box-shadow: var(--card-box-shadow);
+  color: black;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -227,6 +238,16 @@ nav a, header a {
 .btn-small {
   aspect-ratio: 2/1;
   height: 30px;
+}
+
+.image-container-v {
+  height: 95%;
+  aspect-ratio: 1/1;
+}
+
+.image-container-h {
+  width: 95%;
+  aspect-ratio: 1/1;
 }
 
 /* ===== Ids ===== */

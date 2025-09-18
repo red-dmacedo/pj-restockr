@@ -7,6 +7,7 @@ from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Pantry, PantryItem, PurchaseLocation, Item
+from .forms import ItemForm, PurchaseLocationForm
 
 # Create your views here.
 
@@ -85,12 +86,6 @@ class PantryBaseItemUpdate(LoginRequiredMixin, UpdateView):
     fields = ['name', 'image', 'purchase_locations']
     template_name = 'main_app/item_form.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # context["pantry"] = Pantry.objects.get(id=self.kwargs("pantry_id"))
-        # context["item"] = Item.objects.get(id=self.kwargs("pk"))
-        return context
-
 
 def signup(request):
     error_message = ''
@@ -105,3 +100,26 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'signup.html', context)
+
+
+class PurchaseLocations(LoginRequiredMixin, ListView):
+    model = PurchaseLocation
+    template_name = 'main_app/purchase_locations.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context["purchaselocation_list"] = context["purchaselocation_list"].order_by('name')
+        context["purchaselocation_form"] = PurchaseLocationForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        if "purchaselocation_update" in request.POST or "purchaselocation_create" in request.POST:
+            form = PurchaseLocationForm(request.POST)
+            if form.is_valid():
+                form.save()
+            else:
+                form = PurchaseLocationForm()
+            return redirect('purchase-locations')
+
+class PurchaseLocationDelete(LoginRequiredMixin, DeleteView):
+    model = PurchaseLocation

@@ -25,6 +25,9 @@ class PurchaseLocation(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
+
 
 class Item(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)

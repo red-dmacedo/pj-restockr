@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/purchase_locations.css' %}" />
+  {% comment %} <link rel="stylesheet" href="{% static 'css/item_form.css' %}" /> {% endcomment %}
+{% endblock %}
+
+{% block content %}
+  {% if request.user.is_superuser %}
+    <h1>Purchase Locations</h1>
+    <div class="flex-row" style="margin-top: 10px;">
+      <form method="post" class="flex-column">
+        {% csrf_token %}
+        <table>{{ purchaselocation_form.as_table }}</table>
+        <button type="submit" name="purchaselocation_create" class="btn confirm">Add</button>
+      </form>
+      {% if purchaselocation_list.count %}
+        <div class="location-list">
+          <ul>
+            {% for loc in purchaselocation_list %}
+              <li class="card-horizontal flex-row">
+                {% if loc.image %}
+                  <div class="image-container-v">
+                    <img src="{{ loc.image }}" alt="Image of {{ loc.name }}" class="img-v" />
+                  </div>
+                {% endif %}
+                <h2 class="flex-center">{{ loc.name }}</h2>
+                {% comment %} <div class="actions">
+                  <form action="{% url 'purchaselocation-delete' loc.pk %}"></form>
+                    <button type="submit" class="btn warn">Delete</button>
+                </div> {% endcomment %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+  {% else %}
+    <h1 style="color: red;">Invalid Address!</h1>
+    <a href="{% url 'home' %}" class="btn danger">Return</a>
+  {% endif %}
+{% endblock %}

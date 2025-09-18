@@ -27,6 +27,11 @@
               <a href="{% url 'item-index' %}">Items</a>
               {% comment %} <a href="#">Items</a> {% endcomment %}
             </li>
+            {% if user.is_superuser %}
+            <li>
+              <a href="{% url 'purchase-locations' %}" style="color: aqua;">Locations</a>
+            </li>
+            {% endif %}
             <li>
               <form id="logout-form" method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
