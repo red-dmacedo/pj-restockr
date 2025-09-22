@@ -13,7 +13,7 @@ urlpatterns = [
     path('pantries/<int:pantry_id>/item/<int:pk>', views.PantryBaseItemUpdate.as_view(), name='pantry-base-item-update'),
 
     path('items/', views.Items.as_view(), name="item-index"),
-    path('items/new', views.ItemCreate.as_view(), name='item-create'),
+    path('items/new/', views.ItemCreate.as_view(), name='item-create'),
     path('items/<int:pk>/', views.ItemDetail.as_view(), name='item-detail'),
     path('items/<int:pk>/edit/', views.ItemUpdate.as_view(), name='item-update'),
     path('items/<int:pk>/delete', views.ItemDelete.as_view(), name='item-delete'),
@@ -21,4 +21,9 @@ urlpatterns = [
     path('purchase-locations/', views.PurchaseLocations.as_view(), name='purchase-locations'),
     path('purchase-locations/<int:pk>/', views.PurchaseLocations.as_view(), name='purchase-locations-edit'),
     path('purchase-locations/<int:pk>/delete', views.PurchaseLocationDelete.as_view(), name='purchase-locations-delete'),
+
+    path('pantries/<int:pantry_id>/pantry-item/new/<int:item_id>/', views.PantryItemCreate.as_view(), name="pantryitem-create"),
+    path('pantries/<int:pantry_id>/pantry-item/new/', views.PantryItemCreate.as_view(), name="pantryitem-create-new"),
+    path('pantry-item/<int:pk>/edit/', views.PantryItemUpdate.as_view(), name="pantryitem-update"),
+    path('pantry-item/<int:pk>/delete/', views.PantryItemDelete.as_view(), name="pantryitem-delete"),
 ]

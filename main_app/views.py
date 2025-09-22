@@ -1,13 +1,15 @@
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse
 
+from .forms import ItemForm, PurchaseLocationForm, PantryItemForm
 from .models import Pantry, PantryItem, PurchaseLocation, Item
-from .forms import ItemForm, PurchaseLocationForm
 
 # Create your views here.
 
@@ -138,3 +140,29 @@ class PurchaseLocations(LoginRequiredMixin, ListView):
 class PurchaseLocationDelete(LoginRequiredMixin, DeleteView):
     model = PurchaseLocation
     success_url = '/purchase-locations/'
+
+class PantryItemCreate(LoginRequiredMixin, CreateView):
+    model = PantryItem
+    fields = ['pantry', 'item', 'quantity', 'unit']
+
+    def get_initial(self):
+        initial = super().get_initial()
+        if "pantry_id" in self.kwargs:
+            initial["pantry"] = Pantry.objects.get(id=self.kwargs["pantry_id"])
+        if "item_id" in self.kwargs:
+            initial["item"] = Item.objects.get(id=self.kwargs["item_id"])
+        return initial
+
+class PantryItemUpdate(LoginRequiredMixin, UpdateView):
+    model = PantryItem
+    fields = ['quantity', 'unit']
+
+class PantryItemDelete(LoginRequiredMixin, DeleteView):
+    model = PantryItem
+
+    def get_success_url(self):
+        pantry = self.object.pantry
+        if pantry:
+            return reverse('pantry-detail', kwargs={'pk': pantry.id})
+        else:
+            return reverse('pantry-index')

@@ -19,3 +19,8 @@ class PurchaseLocationForm(forms.ModelForm):
   class Meta:
     model = PurchaseLocation
     fields = ['name', 'image']
+
+class PantryItemForm(forms.ModelForm):
+  class Meta:
+    model = PantryItem
+    fields = ['pantry', 'item', 'quantity', 'unit']

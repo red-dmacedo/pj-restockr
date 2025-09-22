@@ -21,7 +21,7 @@
       {% if pantry.items.all %}
         <ul class="pantry-item-list flex-row-wrap">
           {% for pantryitem in pantry.items.all %}
-            <a href="{% url 'item-update' pantryitem.item.pk %}?next={{ request.path }}">
+            <a href="{% url 'pantryitem-update' pantryitem.pk %}?next={{ request.path }}">
               <li class="card">
                 {% if pantryitem.item.image %}
                   <img src="{{ pantryitem.item.image }}" alt="Image of {{ pantryitem.item.name }}" />
@@ -38,31 +38,35 @@
         </ul>
       {% endif %}
       {% if pantry.items.all.count == 1 %}
-        <p>{{ pantry.items.all.count }} item</p>
+        <p class="center-self">{{ pantry.items.all.count }} item</p>
       {% else %}
-        <p>{{ pantry.items.all.count }} items</p>
+        <p class="center-self">{{ pantry.items.all.count }} items</p>
       {% endif %}
     </div>
     <div class="all-items">
       {% if items.count %}
-      <h1 class="center-self">My Items</h1>
+        <h1 class="center-self">{{ user|upper }}'s Items</h1>
         <ul class="flex-row-wrap">
           {% for item in items %}
-            <li class="card">
-              {% if item.image %}
-                <img src="{{ item.image }}" alt="Image of {{ item.name }}" />
-              {% endif %}
-              <h2>{{ item.name }}</h2>
-              {% if item.purchase_locations.all.count %}
-                <div class="flex-row-wrap">
-                  <p><small>{{ item.purchase_locations.all|join_names:', ' }}</small></p>
-                </div>
-              {% endif %}
-            </li>
+            <a href="{% url 'pantryitem-create' pantry.pk item.pk %}?next={{ request.path }}">
+              <li class="card">
+                {% if item.image %}
+                  <img src="{{ item.image }}" alt="Image of {{ item.name }}" />
+                {% endif %}
+                <h2>{{ item.name }}</h2>
+                {% if item.purchase_locations.all.count %}
+                  <div class="flex-row-wrap">
+                    <p>
+                      <small>{{ item.purchase_locations.all|join_names:', ' }}</small>
+                    </p>
+                  </div>
+                {% endif %}
+              </li>
+            </a>
           {% endfor %}
         </ul>
       {% endif %}
-      </div>
+    </div>
   {% else %}
     <h1>No Pantry at this address</h1>
   {% endif %}

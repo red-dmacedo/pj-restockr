@@ -81,3 +81,6 @@ class PantryItem(models.Model):
 
     def __str__(self):
         return f"{self.item}"
+
+    def get_absolute_url(self):
+        return reverse("pantry-detail", kwargs={"pk": self.pantry.id})

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/pantryitem_form.css' %}" />
+{% endblock %}
+
+{% block content %}
+  {% if pantryitem %}
+    <h1>Edit: {{ pantryitem.item.name }}</h1>
+    <div class="item-image image-container-v">
+      <img src="{{ pantryitem.item.image }}" alt="Image of {{ pantryitem.item.name }}" />
+    </div>
+  {% else %}
+    <h1>Add Item to Pantry</h1>
+  {% endif %}
+  <form method="post" class="form">
+    {% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <div class="actions">
+      <a href="{{ request.GET.next|default:'/pantries/' }}" class="btn secondary">Cancel</a>
+      <button type="submit" class="btn confirm">{{ pantryitem|yesno:'Update,Create' }}</button>
+      {% if pantryitem %}
+        <a href="{% url 'pantryitem-delete' pantryitem.pk %}" class="btn danger">Remove</a>
+      {% endif %}
+    </div>
+  </form>
+{% endblock %}

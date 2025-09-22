@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+    <h1>
+        Remove <span class="highlight-text">{{ pantryitem.item.name }}</span> from <span class="highlight-text">{{ pantryitem.pantry.name }}</span>?</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <a href="{% url 'pantryitem-update' pantryitem.pk %}?next={% url 'pantry-detail' pantryitem.pantry.id %}" class="btn secondary">Cancel</a>
+        <button class="btn danger">Confirm</button>
+    </form>
+{% endblock content %}
