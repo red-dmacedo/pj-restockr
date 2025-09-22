@@ -38,6 +38,11 @@ class PantryDetail(LoginRequiredMixin, DetailView):
     template_name = 'main_app/pantry_detail.html'
     context_object_name = "pantry"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["items"] = Item.objects.filter(owner=self.request.user)
+        return context
+
 
 class PantryUpdate(LoginRequiredMixin, UpdateView):
     model = Pantry
@@ -79,6 +84,11 @@ class ItemUpdate(LoginRequiredMixin, UpdateView):
 class ItemDelete(LoginRequiredMixin, DeleteView):
     model = Item
     success_url = '/items/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["next"] = self.request.GET.get("next", "")
+        return context
 
 
 class PantryBaseItemUpdate(LoginRequiredMixin, UpdateView):

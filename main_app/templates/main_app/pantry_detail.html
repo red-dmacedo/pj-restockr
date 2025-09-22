@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_tags %}
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'css/pantry_detail.css' %}" />
@@ -21,7 +22,6 @@
         <ul class="pantry-item-list flex-row-wrap">
           {% for pantryitem in pantry.items.all %}
             <a href="{% url 'item-update' pantryitem.item.pk %}?next={{ request.path }}">
-            {% comment %} <a href="{% url 'pantry-base-item-update' pantry.pk pantryitem.item.pk %}"> {% endcomment %}
               <li class="card">
                 {% if pantryitem.item.image %}
                   <img src="{{ pantryitem.item.image }}" alt="Image of {{ pantryitem.item.name }}" />
@@ -43,6 +43,26 @@
         <p>{{ pantry.items.all.count }} items</p>
       {% endif %}
     </div>
+    <div class="all-items">
+      {% if items.count %}
+      <h1 class="center-self">My Items</h1>
+        <ul class="flex-row-wrap">
+          {% for item in items %}
+            <li class="card">
+              {% if item.image %}
+                <img src="{{ item.image }}" alt="Image of {{ item.name }}" />
+              {% endif %}
+              <h2>{{ item.name }}</h2>
+              {% if item.purchase_locations.all.count %}
+                <div class="flex-row-wrap">
+                  <p><small>{{ item.purchase_locations.all|join_names:', ' }}</small></p>
+                </div>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      </div>
   {% else %}
     <h1>No Pantry at this address</h1>
   {% endif %}

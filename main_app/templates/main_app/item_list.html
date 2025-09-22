@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_tags %}
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'css/item_list.css' %}" />
@@ -16,14 +17,18 @@
             {% if item.image %}
               <img src="{{ item.image }}" alt="Image of {{ item.image }}" />
             {% endif %}
-            <h2>{{ item.name }}</h2>
+            <h2>
+              {% if item.name|length > 15 %}
+                {{ item.name|slice:':15' }}...
+              {% else %}
+                {{ item.name }}
+              {% endif %}
+            </h2>
             {% if item.purchase_locations.all.count %}
               <div class="flex-row-wrap">
-                {% for loc in item.purchase_locations.all %}
-                  <p>
-                    <small>{{ loc.name }}</small>
-                  </p>
-                {% endfor %}
+                <p>
+                  <small>{{ item.purchase_locations.all|join_names:', ' }}</small>
+                </p>
               </div>
             {% endif %}
           </li>

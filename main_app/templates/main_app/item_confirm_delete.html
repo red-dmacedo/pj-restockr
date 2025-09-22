@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+  <h1>Delete {{ item.name }}?</h1>
+  <form method="post" class="actions">
+    {% csrf_token %}
+    <a href="{{ next|default:'/items/' }}" class="btn confirm">Cancel</a>
+    <button type="submit" class="btn danger">Delete</button>
+  </form>
+{% endblock %}

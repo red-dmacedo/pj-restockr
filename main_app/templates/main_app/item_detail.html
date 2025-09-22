@@ -27,11 +27,8 @@
       {% else %}
         <a href="{% url 'item-index' %}" class="btn danger">Cancel</a>
       {% endif %}
-      {% comment %} <a href="{% url 'item-update' item.pk %}" class="btn">Edit</a> {% endcomment %}
       <a href="{% url 'item-update' item.pk %}?next={{ request.path }}" class="btn">Edit</a>
-      <form action="{% url 'item-delete' item.pk %}">
-        <button type="submit" class="btn warn">Delete</button>
-      </form>
+      <a href="{% url 'item-delete' item.pk %}?next={{ request.path }}" class="btn warn">Delete</a>
     </div>
   {% endif %}
 {% endblock %}
