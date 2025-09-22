@@ -258,6 +258,9 @@ nav a, header a {
   aspect-ratio: 1/1;
 }
 
+.margin-top10 {
+  margin-top: 10px;
+}
 /* ===== Ids ===== */
 #logout-form button {
   text-decoration: none;

@@ -3,13 +3,14 @@
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'css/purchase_locations.css' %}" />
-  {% comment %} <link rel="stylesheet" href="{% static 'css/item_form.css' %}" /> {% endcomment %}
+  {% comment %}
+  <link rel="stylesheet" href="{% static 'css/item_form.css' %}" /> {% endcomment %}
 {% endblock %}
 
 {% block content %}
   {% if request.user.is_superuser %}
     <h1>Purchase Locations</h1>
-    <div class="flex-row" style="margin-top: 10px;">
+    <div class="flex-row margin-top10">
       <form method="post" class="flex-column">
         {% csrf_token %}
         <table>{{ purchaselocation_form.as_table }}</table>
@@ -45,7 +46,7 @@
       {% endif %}
     </div>
   {% else %}
-    <h1 style="color: red;">Invalid Address!</h1>
+    <h1 class="danger">Invalid Address!</h1>
     <a href="{% url 'home' %}" class="btn danger">Return</a>
   {% endif %}
 {% endblock %}
