@@ -38,6 +38,8 @@ body {
   --font-l: 1.125rem;
   --font-reg: 1rem;
   --card-border-radius: 6px;
+  --store-image: url('https://images.unsplash.com/photo-1604719312566-8912e9227c6a?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  --store-shelf: url('https://images.stockcake.com/public/b/9/8/b98ddc60-0ed2-4e15-a47f-0f58b8cbfed9/grocery-shelf-abundance-stockcake.jpg');
 }
 
 header {
@@ -50,6 +52,7 @@ header {
   background-color: var(--nav-bg);
   margin: 0px;
   padding: 10px;
+  place-items: center;
 }
 
 img { 
@@ -74,13 +77,17 @@ ul {
 
 main {
   width: 100%;
-  padding: 0 10px;
+  padding: 0px 10px;
 }
 
 nav ul {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+a {
+  text-decoration: none;
 }
 
 nav a, header a {
@@ -111,6 +118,10 @@ nav a, header a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.center-self {
+  place-self: center;
 }
 
 .card {
@@ -188,6 +199,10 @@ nav a, header a {
 .confirm {
   color: var(--submit);
   border-color: var(--submit);
+}
+
+.margin10 {
+  margin: 10px;
 }
 
 .warn {

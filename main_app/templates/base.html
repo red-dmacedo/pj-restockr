@@ -13,9 +13,10 @@
   </head>
   <body>
     <header>
-      <div class="logo-container">
-        <a href="{% url 'home' %}">Logo Placeholder</a>
-        {% comment %} <a href="{% url 'home' %}"><img src="" alt="" /></a> {% endcomment %}
+      <div class="image-container-v">
+        <a href="{% url 'home' %}">
+          <img src="{% static 'images/pantry-wht.svg' %}" alt="Image of a Cupboard" />
+        </a>
       </div>
       <nav>
         <ul>
@@ -28,9 +29,9 @@
               {% comment %} <a href="#">Items</a> {% endcomment %}
             </li>
             {% if user.is_superuser %}
-            <li>
-              <a href="{% url 'purchase-locations' %}" style="color: aqua;">Locations</a>
-            </li>
+              <li>
+                <a href="{% url 'purchase-locations' %}" style="color: aqua;">Locations</a>
+              </li>
             {% endif %}
             <li>
               <form id="logout-form" method="post" action="{% url 'logout' %}">
@@ -50,7 +51,7 @@
       </nav>
     </header>
 
-    <main class="page-content flex-center">
+    <main class="{% if user.is_authenticated %}page-content{% endif %} flex-center">
       {% block content %}
 
       {% endblock %}

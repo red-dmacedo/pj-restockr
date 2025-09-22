@@ -6,16 +6,22 @@
 {% endblock %}
 
 {% block content %}
-  {% if not user.is_authenticated %}
-    <section>
-      <h1 class="flex-center">Login</h1>
-      <form action="{% url 'home' %}" method="post" class="login form">
-        {% csrf_token %} {{ form.as_p }}
-        <input type="hidden" name="next" value="{{ next }}" />
-        <button type="submit" class="btn submit">Login</button>
-      </form>
-    </section>
-    {% else %}
+  {% if user.is_authenticated %}
     <h1>Homepage</h1>
   {% endif %}
+  <div class="homepage-container">
+    <div class="image-container-v homepage-image">
+      <img src="https://images.stockcake.com/public/b/9/8/b98ddc60-0ed2-4e15-a47f-0f58b8cbfed9/grocery-shelf-abundance-stockcake.jpg" alt="Image of grocery store shelf" />
+    </div>
+    {% if not user.is_authenticated %}
+      <section class="login-form-container">
+        <h1 class="flex-center">Login</h1>
+        <form action="{% url 'home' %}" method="post" class="login form">
+          {% csrf_token %} {{ form.as_p }}
+          <input type="hidden" name="next" value="{{ next }}" />
+          <button type="submit" class="btn submit margin10">Login</button>
+        </form>
+      </section>
+    {% endif %}
+  </div>
 {% endblock %}

@@ -44,6 +44,9 @@ class Item(models.Model):
     def get_absolute_url(self):
         return reverse("item-detail", kwargs={"pk": self.id})
 
+    class Meta:
+        ordering = ['name']
+
 
 class Pantry(models.Model):
     name = models.CharField(max_length=50)
