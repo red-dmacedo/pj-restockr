@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/pantry-wht.svg' %}" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <title>ReStockr</title>
     {% block head %}
@@ -26,7 +27,6 @@
             </li>
             <li>
               <a href="{% url 'item-index' %}">Items</a>
-              {% comment %} <a href="#">Items</a> {% endcomment %}
             </li>
             {% if user.is_superuser %}
               <li>
