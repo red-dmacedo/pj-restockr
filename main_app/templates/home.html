@@ -7,7 +7,7 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    <h1>ReStockr</h1>
+    <h1 class="edu-nsw-act-cursive">ReStockr</h1>
   {% endif %}
   <div class="homepage-container">
     <div class="image-container-v homepage-image">
@@ -23,5 +23,9 @@
         </form>
       </section>
     {% endif %}
+  </div>
+  <div class="summary center-self card">
+    <h2>What is ReStockr?</h2>
+    <p>ReStockr is an easy-to-use pantry tracker. It can not only be used to track the inventory of your pantry, but also track where you purchased your items from. As an added bonus, any items that you mark as "out-of-stock" will be automatically added to your shopping list!</p>
   </div>
 {% endblock %}

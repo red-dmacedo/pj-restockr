@@ -284,6 +284,13 @@ nav a, header a {
 .highlight-text {
   color: rgb(0, 115, 182)
 }
+
+.edu-nsw-act-cursive {
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
 /* ===== Ids ===== */
 #logout-form button {
   text-decoration: none;
